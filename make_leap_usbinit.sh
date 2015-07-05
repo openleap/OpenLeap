@@ -10,7 +10,7 @@ PCAP_FILE=$2
 
 tshark \
   -r ${PCAP_FILE} \
-  -T fields \
-  -e none \
+  -q \
+  -2 \
   -R "usb.device_address == ${LEAP_DEV_ADDR} and usb.transfer_type == 0x02 and usb.endpoint_number.direction == 0 and usb.setup.bRequest == 1" \
   -Xlua_script:usb_c.lua
