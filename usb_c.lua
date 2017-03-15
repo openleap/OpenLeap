@@ -35,7 +35,7 @@ do
       local usb_setup_bRequest = Field.new("usb.setup.bRequest")
       local usb_setup_wValue   = Field.new("usb.setup.wValue")
       local usb_setup_wIndex   = Field.new("usb.setup.wIndex")
-      local usb_capdata        = Field.new("usb.capdata")
+      local usb_dataFragment   = Field.new("usb.data_fragment")
 
       local usb_setup_wLength  = Field.new("usb.setup.wLength")
 
@@ -46,10 +46,10 @@ do
          code_string = code_string .. tostring( usb_setup_bRequest() ) .. ", "
          code_string = code_string .. tostring( usb_setup_wValue() ) .. ", "
          code_string = code_string .. tostring( usb_setup_wIndex() ) .. ", "
-         code_string = code_string .. to_c_byte_array( usb_capdata() ) .. ", "
-         code_string = code_string .. #usb_capdata() .. ", "
+         code_string = code_string .. to_c_byte_array( usb_dataFragment() ) .. ", "
+         code_string = code_string .. #usb_dataFragment() .. ", "
          code_string = code_string .. "1000);"
-         code_string = code_string .. "\n  if (ret != " .. #usb_capdata() .. ") {\n    printf(\"strl out: ret == %i\\n\", ret);\n  }\n"
+         code_string = code_string .. "\n  if (ret != " .. #usb_dataFragment() .. ") {\n    printf(\"strl out: ret == %i\\n\", ret);\n  }\n"
 
          print(code_string)
 
